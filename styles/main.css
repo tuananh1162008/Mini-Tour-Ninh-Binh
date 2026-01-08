@@ -1,50 +1,95 @@
 
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       font-family: 'Playfair Display', serif;
       color: #333;
+      line-height: 1.6;
+      overflow-x: hidden;
     }
     
     .navbar {
       background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
       box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      padding: 0.5rem 0;
     }
     
     .navbar-brand {
       font-weight: bold;
-      font-size: 1.5rem;
+      font-size: clamp(1.2rem, 5vw, 1.8rem);
       color: white !important;
+      white-space: nowrap;
     }
     
     .nav-link {
       color: white !important;
-      margin: 0 0.5rem;
+      margin: 0.25rem 0.3rem;
       transition: 0.3s;
+      font-size: clamp(0.85rem, 2vw, 1rem);
+      padding: 0.5rem 0.5rem !important;
     }
     
-    .nav-link:hover {
+    .nav-link:hover,
+    .nav-link.active {
       color: #ffd700 !important;
       transform: translateY(-2px);
+    }
+
+    .navbar-toggler {
+      border-color: rgba(255,255,255,0.5) !important;
+    }
+
+    .navbar-toggler-icon {
+      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.8%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
     }
     
     .hero-section {
       background: url('https://i.pinimg.com/1200x/63/93/0e/63930e3d846e30f1552388b874b1b5cd.jpg');
       background-size: cover;
       background-position: center;
+      background-attachment: fixed;
       color: white;
-      padding: 150px 0;
+      padding: clamp(80px, 20vw, 150px) 1rem;
       text-align: center;
+      position: relative;
+    }
+
+    .hero-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0,0,0,0.4);
+      z-index: 1;
+    }
+
+    .hero-section .container {
+      position: relative;
+      z-index: 2;
     }
     
     .hero-section h1 {
-      font-size: 3.5rem;
+      font-size: clamp(1.8rem, 8vw, 3.5rem);
       font-weight: bold;
       text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
       margin-bottom: 1rem;
+      word-wrap: break-word;
     }
     
     .hero-section p {
-      font-size: 1.3rem;
+      font-size: clamp(1rem, 4vw, 1.3rem);
       text-shadow: 1px 1px 4px rgba(0,0,0,0.7);
+      margin-bottom: 1.5rem;
     }
     
     .destination-card {
@@ -54,6 +99,8 @@
       box-shadow: 0 4px 15px rgba(0,0,0,0.1);
       transition: transform 0.3s, box-shadow 0.3s;
       height: 100%;
+      display: flex;
+      flex-direction: column;
     }
     
     .destination-card:hover {
@@ -62,18 +109,36 @@
     }
     
     .destination-card img {
-      height: 250px;
+      height: clamp(200px, 40vw, 250px);
       object-fit: cover;
+      width: 100%;
     }
     
     .destination-card .card-body {
-      padding: 1.5rem;
+      padding: 1.25rem;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
     }
     
     .destination-card .card-title {
       font-weight: bold;
       color: #667eea;
       margin-bottom: 0.5rem;
+      font-size: clamp(1rem, 3vw, 1.25rem);
+    }
+
+    .destination-card .card-text {
+      font-size: clamp(0.85rem, 2vw, 1rem);
+      flex-grow: 1;
+    }
+
+    .destination-card .text-muted {
+      font-size: clamp(0.75rem, 1.5vw, 0.9rem);
+    }
+
+    .destination-card .text-success {
+      font-size: clamp(0.85rem, 2vw, 1rem);
     }
     
     .btn-custom {
@@ -86,6 +151,9 @@
       font-weight: 600;
       display: inline-block;
       text-decoration: none;
+      font-size: clamp(0.85rem, 2vw, 1rem);
+      white-space: nowrap;
+      cursor: pointer;
     }
     
     .btn-custom:hover {
@@ -110,22 +178,25 @@
     .destination-card .btn-custom.btn-sm {
       padding: 0.5rem 1.2rem;
       font-size: 0.875rem;
+      width: auto;
+      margin: 0.5rem auto 0;
     }
 
     /* Featured card (used for Phan Thiết) - larger image */
     .featured-card .card-img-top {
-      height: 360px;
+      height: clamp(250px, 50vw, 360px);
       object-fit: cover;
     }
 
     .section-title {
-      font-size: 2.5rem;
+      font-size: clamp(1.8rem, 7vw, 2.5rem);
       font-weight: bold;
       color: #333;
-      margin-bottom: 3rem;
+      margin-bottom: clamp(1.5rem, 5vw, 3rem);
       text-align: center;
       position: relative;
       padding-bottom: 1rem;
+      word-wrap: break-word;
     }
     
     .section-title::after {
@@ -139,30 +210,239 @@
       background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
       border-radius: 2px;
     }
+
+    /* Form Styles */
+    .form-control, .form-select {
+      border-radius: 8px;
+      border: 1px solid #ddd;
+      font-size: clamp(0.9rem, 2vw, 1rem);
+      padding: 0.6rem 0.75rem;
+    }
+
+    .form-control:focus, .form-select:focus {
+      border-color: #667eea;
+      box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.25);
+    }
+
+    .form-label {
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      font-size: clamp(0.85rem, 2vw, 1rem);
+    }
     
     footer {
       background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
       color: white;
-      padding: 3rem 0 1rem;
-      margin-top: 5rem;
+      padding: clamp(1.5rem, 5vw, 3rem) 1rem clamp(0.5rem, 2vw, 1rem);
+      margin-top: clamp(2rem, 5vw, 5rem);
     }
     
     .footer-section h5 {
       font-weight: bold;
       margin-bottom: 1.5rem;
+      font-size: clamp(1rem, 3vw, 1.25rem);
+    }
+    
+    .footer-section {
+      margin-bottom: 1.5rem;
+    }
+
+    .footer-section p {
+      font-size: clamp(0.85rem, 2vw, 1rem);
     }
     
     .footer-section ul {
       list-style: none;
       padding: 0;
     }
+
+    .footer-section li {
+      margin-bottom: 0.5rem;
+    }
     
     .footer-section a {
       color: #ddd;
       text-decoration: none;
       transition: 0.3s;
+      font-size: clamp(0.85rem, 2vw, 1rem);
     }
     
     .footer-section a:hover {
       color: #ffd700;
+    }
+
+    /* Responsive Media Queries */
+    @media (max-width: 768px) {
+      .navbar {
+        padding: 0.5rem 0;
+      }
+
+      .nav-link {
+        padding: 0.75rem 0 !important;
+      }
+
+      .container-fluid {
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+      }
+
+      .row {
+        margin-left: -0.5rem;
+        margin-right: -0.5rem;
+      }
+
+      [class*="col-"] {
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+      }
+
+      section {
+        padding: 1.5rem 0 !important;
+      }
+
+      .hero-section .btn-custom {
+        padding: 0.6rem 1.2rem;
+        font-size: 0.9rem;
+      }
+
+      .destination-card {
+        margin-bottom: 1rem;
+      }
+
+      .featured-card {
+        margin-top: 2rem;
+      }
+
+      footer {
+        text-align: center;
+      }
+
+      .footer-section {
+        margin-bottom: 2rem;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .navbar-brand {
+        font-size: 1.2rem;
+      }
+
+      .nav-link {
+        font-size: 0.9rem;
+        margin: 0.3rem 0;
+        padding: 0.5rem 0.25rem !important;
+      }
+
+      .hero-section {
+        padding: 60px 1rem;
+      }
+
+      .hero-section h1 {
+        margin-bottom: 0.5rem;
+      }
+
+      .hero-section .btn-custom {
+        padding: 0.5rem 1rem;
+        font-size: 0.85rem;
+        margin-top: 1rem;
+      }
+
+      .destination-card img {
+        height: 180px;
+      }
+
+      .destination-card .card-body {
+        padding: 1rem;
+      }
+
+      .section-title::after {
+        width: 60px;
+      }
+
+      .row {
+        row-gap: 1rem;
+      }
+
+      .form-control, .form-select {
+        font-size: 16px; /* Prevent zoom on iOS */
+        padding: 0.75rem;
+      }
+
+      .destination-card .card-body .btn-custom {
+        width: 100%;
+      }
+
+      footer {
+        padding: 1.5rem 0.5rem 0.5rem;
+      }
+
+      .footer-section h5 {
+        font-size: 1rem;
+      }
+    }
+
+    @media (max-width: 380px) {
+      .navbar-brand {
+        font-size: 1rem;
+      }
+
+      .hero-section h1 {
+        font-size: 1.5rem;
+      }
+
+      .hero-section p {
+        font-size: 0.9rem;
+      }
+
+      .section-title {
+        font-size: 1.5rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .destination-card {
+        margin-bottom: 0.75rem;
+      }
+
+      .btn-custom {
+        padding: 0.5rem 1rem;
+        font-size: 0.8rem;
+      }
+    }
+
+    /* Landscape Mode */
+    @media (max-height: 500px) and (orientation: landscape) {
+      .hero-section {
+        padding: 40px 1rem;
+      }
+
+      .hero-section h1 {
+        font-size: 2rem;
+        margin-bottom: 0.5rem;
+      }
+
+      .hero-section p {
+        font-size: 1rem;
+      }
+    }
+
+    /* High DPI Displays */
+    @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+      .destination-card img {
+        image-rendering: crisp-edges;
+      }
+    }
+
+    /* Touch-friendly adjustments */
+    @media (hover: none) and (pointer: coarse) {
+      .btn-custom {
+        padding: 0.75rem 1.5rem;
+      }
+
+      .nav-link {
+        padding: 0.75rem 0.5rem !important;
+      }
+
+      .destination-card:active {
+        transform: scale(0.98);
+      }
     }
