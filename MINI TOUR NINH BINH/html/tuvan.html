@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Tư Vấn Combo Du Lịch Ninh Bình</title>
+	<link rel="stylesheet" href="../styles/main.css">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+	<link rel="shortcut icon" href="../img/2680878842683343660.jpg" type="image/x-icon">
+	<style>
+		.consultation-banner {
+			background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+			color: white;
+			padding: 80px 0;
+			text-align: center;
+			margin-bottom: 50px;
+		}
+
+		.consultation-banner h1 {
+			font-size: 3rem;
+			font-weight: bold;
+			margin-bottom: 1rem;
+			text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+		}
+
+		.consultation-banner p {
+			font-size: 1.2rem;
+			text-shadow: 1px 1px 4px rgba(0,0,0,0.3);
+		}
+
+		.consultation-container {
+			max-width: 900px;
+			margin: 0 auto;
+		}
+
+		.consultation-form {
+			background: white;
+			padding: 3rem;
+			border-radius: 15px;
+			box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+			margin-bottom: 4rem;
+		}
+
+		.form-label {
+			font-weight: 600;
+			color: #333;
+			margin-bottom: 0.8rem;
+		}
+
+		.form-control, .form-select {
+			border: 2px solid #e0e0e0;
+			border-radius: 8px;
+			padding: 0.8rem;
+			transition: 0.3s;
+			font-size: 1rem;
+		}
+
+		.form-control:focus, .form-select:focus {
+			border-color: #667eea;
+			box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.25);
+		}
+
+		.form-group {
+			margin-bottom: 1.5rem;
+		}
+
+		.form-group.group-row {
+			display: grid;
+			grid-template-columns: 1fr 1fr;
+			gap: 1.5rem;
+		}
+
+		@media (max-width: 768px) {
+			.form-group.group-row {
+				grid-template-columns: 1fr;
+			}
+		}
+
+		.btn-submit {
+			background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+			border: none;
+			color: white;
+			padding: 1rem 3rem;
+			border-radius: 25px;
+			font-weight: 600;
+			font-size: 1.1rem;
+			cursor: pointer;
+			transition: all 0.3s;
+			width: 100%;
+		}
+
+		.btn-submit:hover {
+			transform: translateY(-2px);
+			box-shadow: 0 6px 20px rgba(102, 126, 234, 0.5);
+		}
+
+		.btn-submit:active {
+			transform: translateY(0);
+		}
+
+		.contact-info {
+			background: #f8f9fa;
+			padding: 2rem;
+			border-radius: 15px;
+			margin-top: 3rem;
+		}
+
+		.contact-info h3 {
+			color: #667eea;
+			margin-bottom: 1.5rem;
+			font-weight: bold;
+		}
+
+		.contact-item {
+			display: flex;
+			align-items: center;
+			margin-bottom: 1.5rem;
+			padding: 1rem;
+			background: white;
+			border-radius: 10px;
+			box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+		}
+
+		.contact-item-icon {
+			font-size: 1.8rem;
+			margin-right: 1rem;
+			min-width: 40px;
+			text-align: center;
+		}
+
+		.contact-item-content h5 {
+			margin: 0;
+			color: #333;
+			font-weight: 600;
+		}
+
+		.contact-item-content p {
+			margin: 0.3rem 0 0;
+			color: #666;
+		}
+
+		.tour-options {
+			background: white;
+			padding: 2rem;
+			border-radius: 15px;
+			margin-bottom: 2rem;
+			box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+		}
+
+		.tour-options h3 {
+			color: #667eea;
+			margin-bottom: 1.5rem;
+			font-weight: bold;
+		}
+
+		.checkbox-group {
+			display: grid;
+			grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+			gap: 1rem;
+		}
+
+		.checkbox-item {
+			display: flex;
+			align-items: center;
+		}
+
+		.checkbox-item input[type="checkbox"] {
+			width: 20px;
+			height: 20px;
+			margin-right: 0.8rem;
+			cursor: pointer;
+			accent-color: #667eea;
+		}
+
+		.checkbox-item label {
+			margin: 0;
+			cursor: pointer;
+			flex: 1;
+		}
+
+		.success-message {
+			display: none;
+			background: #d4edda;
+			color: #155724;
+			padding: 1.5rem;
+			border-radius: 10px;
+			border-left: 4px solid #28a745;
+			margin-bottom: 2rem;
+		}
+
+		.success-message.show {
+			display: block;
+			animation: slideIn 0.3s ease;
+		}
+
+		@keyframes slideIn {
+			from {
+				opacity: 0;
+				transform: translateY(-20px);
+			}
+			to {
+				opacity: 1;
+				transform: translateY(0);
+			}
+		}
+	</style>
+</head>
+<body>
+	<!-- Navbar -->
+	<nav class="navbar navbar-expand-lg sticky-top">
+		<div class="container-fluid">
+			<a class="navbar-brand" href="../index.html">✈️ Mini Tour Ninh Bình</a>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarNav">
+				<ul class="navbar-nav ms-auto">
+					<li class="nav-item"><a class="nav-link" href="../index.html#home">Trang chủ</a></li>
+					<li class="nav-item"><a class="nav-link" href="../index.html#destinations">Điểm đến</a></li>
+					<li class="nav-item"><a class="nav-link" href="../index.html#about">Về chúng tôi</a></li>
+					<li class="nav-item"><a class="nav-link" href="../index.html#contact">Liên hệ</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+	<!-- Banner -->
+	<section class="consultation-banner">
+		<div class="container">
+			<h1>💡 Tư Vấn Combo Du Lịch Ninh Bình</h1>
+			<p>Thiết kế chuyến du lịch hoàn hảo phù hợp với nhu cầu của bạn</p>
+		</div>
+	</section>
+
+	<!-- Main Content -->
+	<main class="py-5">
+		<div class="container consultation-container">
+			<div id="successMessage" class="success-message">
+				✓ Cảm ơn bạn! Chúng tôi đã nhận được thông tin tư vấn của bạn. Chúng tôi sẽ liên hệ lại sớm nhất.
+			</div>
+
+			<!-- Tour Options -->
+			<div class="tour-options">
+				<h3>🎯 Loại Tour Bạn Quan Tâm</h3>
+				<div class="checkbox-group">
+					<div class="checkbox-item">
+						<input type="checkbox" id="tour1" name="tours" value="mini-tour">
+						<label for="tour1">🏔️ Mini Tour</label>
+					</div>
+					<div class="checkbox-item">
+						<input type="checkbox" id="tour2" name="tours" value="tour-trai-nghiem">
+						<label for="tour2">🚤 Tour Trải Nghiệm</label>
+					</div>
+					<div class="checkbox-item">
+						<input type="checkbox" id="tour3" name="tours" value="tour-tam-linh">
+						<label for="tour3">🧘 Tour Tâm Linh</label>
+					</div>
+					<div class="checkbox-item">
+						<input type="checkbox" id="tour4" name="tours" value="tour-custom">
+						<label for="tour4">⭐ Tour Tùy Chỉnh</label>
+					</div>
+				</div>
+			</div>
+
+			<!-- Consultation Form -->
+			<form class="consultation-form" id="consultationForm">
+				<h2 style="color: #667eea; margin-bottom: 2rem; text-align: center;">📝 Biểu Mẫu Tư Vấn</h2>
+
+				<!-- Personal Info -->
+				<div class="form-group group-row">
+					<div>
+						<label for="fullname" class="form-label">Họ và Tên *</label>
+						<input type="text" class="form-control" id="fullname" name="fullname" required placeholder="Nhập họ tên của bạn">
+					</div>
+					<div>
+						<label for="email" class="form-label">Email *</label>
+						<input type="email" class="form-control" id="email" name="email" required placeholder="Nhập email của bạn">
+					</div>
+				</div>
+
+				<div class="form-group group-row">
+					<div>
+						<label for="phone" class="form-label">Số Điện Thoại *</label>
+						<input type="tel" class="form-control" id="phone" name="phone" required placeholder="0343 638 950">
+					</div>
+					<div>
+						<label for="date" class="form-label">Ngày Dự Kiến Khởi Hành *</label>
+						<input type="date" class="form-control" id="date" name="date" required>
+					</div>
+				</div>
+
+				<!-- Tour Details -->
+				<div class="form-group">
+					<label for="duration" class="form-label">Thời Lượng Tour Mong Muốn *</label>
+					<select class="form-select" id="duration" name="duration" required>
+						<option value="">-- Chọn thời lượng --</option>
+						<option value="1-day">1 Ngày</option>
+						<option value="2-days">2 Ngày 1 Đêm</option>
+						<option value="3-days">3 Ngày 2 Đêm</option>
+						<option value="4-5-days">4 - 5 Ngày</option>
+						<option value="custom">Tùy Chỉnh</option>
+					</select>
+				</div>
+
+				<div class="form-group group-row">
+					<div>
+						<label for="people" class="form-label">Số Người *</label>
+						<input type="number" class="form-control" id="people" name="people" min="1" required placeholder="VD: 4">
+					</div>
+					<div>
+						<label for="age-group" class="form-label">Nhóm Tuổi Chính *</label>
+						<select class="form-select" id="age-group" name="age-group" required>
+							<option value="">-- Chọn nhóm tuổi --</option>
+							<option value="kids">Trẻ em (dưới 12 tuổi)</option>
+							<option value="teenagers">Thanh thiếu niên (12-18 tuổi)</option>
+							<option value="adults">Người lớn (18-60 tuổi)</option>
+							<option value="seniors">Người cao tuổi (trên 60 tuổi)</option>
+							<option value="mixed">Hỗn Hợp</option>
+						</select>
+					</div>
+				</div>
+
+				<!-- Special Requests -->
+				<div class="form-group">
+					<label for="preferences" class="form-label">Sở Thích & Yêu Cầu Đặc Biệt</label>
+					<textarea class="form-control" id="preferences" name="preferences" rows="4" placeholder="Ví dụ: Yêu thích chụp ảnh, thích ăn đặc sản, cần hướng dẫn tiếng Anh..."></textarea>
+				</div>
+
+				<div class="form-group">
+					<label for="budget" class="form-label">Ngân Sách Dự Kiến (VND/người)</label>
+					<input type="text" class="form-control" id="budget" name="budget" placeholder="VD: 500.000 - 1.000.000">
+				</div>
+
+				<!-- Submit Button -->
+				<button type="submit" class="btn-submit">📤 Gửi Tư Vấn</button>
+				<p style="text-align: center; margin-top: 1rem; color: #666; font-size: 0.9rem;">
+					* Là trường bắt buộc
+				</p>
+			</form>
+
+			<!-- Contact Info -->
+			<div class="contact-info">
+				<h3>📞 Liên Hệ Trực Tiếp</h3>
+				<div class="contact-item">
+					<div class="contact-item-icon">💬</div>
+					<div class="contact-item-content">
+						<h5>Facebook Messenger</h5>
+						<p><a href="https://www.facebook.com/people/MINI-TOUR-NINH-B%C3%8CNH/61584716466560/" target="_blank" style="color: #667eea; text-decoration: none;">Mini Tour Ninh Bình</a></p>
+					</div>
+				</div>
+
+				<div class="contact-item">
+					<div class="contact-item-icon">📱</div>
+					<div class="contact-item-content">
+						<h5>Hotline / Zalo</h5>
+						<p><a href="tel:0343638950" style="color: #667eea; text-decoration: none;">0343 638 950</a></p>
+					</div>
+				</div>
+
+				<div class="contact-item">
+					<div class="contact-item-icon">📧</div>
+					<div class="contact-item-content">
+						<h5>Email</h5>
+						<p><a href="mailto:Nguyenhavy548548@gmail.com" style="color: #667eea; text-decoration: none;">Nguyenhavy548548@gmail.com</a></p>
+					</div>
+				</div>
+
+				<div class="contact-item">
+					<div class="contact-item-icon">📍</div>
+					<div class="contact-item-content">
+						<h5>Địa Chỉ</h5>
+						<p>Trường THPT Đỗ Huy Liêu<br>Thành phố Ninh Bình</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</main>
+
+	<!-- Footer -->
+	<footer style="margin-top: 5rem;">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-3 footer-section">
+					<h5>Du Lịch Việt Nam</h5>
+					<p>Khám phá vẻ đẹp tự nhiên và văn hóa phong phú của Việt Nam.</p>
+				</div>
+				<div class="col-md-3 footer-section">
+					<h5>Thông tin</h5>
+					<ul>
+						<li><a href="../index.html#about">Về chúng tôi</a></li>
+						<li><a href="dieukhoan.html">Điều khoản sử dụng</a></li>
+						<li><a href="#">Chính sách riêng tư</a></li>
+						<li><a href="../index.html#contact">Liên hệ</a></li>
+					</ul>
+				</div>
+				<div class="col-md-3 footer-section">
+					<h5>Theo dõi chúng tôi</h5>
+					<ul>
+						<li><a href="https://www.facebook.com/people/MINI-TOUR-NINH-B%C3%8CNH/61584716466560/">Facebook</a></li>
+						<li><a href="#">Instagram</a></li>
+						<li><a href="#">Twitter</a></li>
+						<li><a href="#">YouTube</a></li>
+					</ul>
+				</div>
+			</div>
+			<hr style="border-color: rgba(255,255,255,0.2);">
+			<div class="text-center">
+				<p>&copy; 2025 Du Lịch Việt Nam.</p>
+			</div>
+		</div>
+	</footer>
+
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+	<script>
+		// Form submission handler
+		document.getElementById('consultationForm').addEventListener('submit', function(e) {
+			e.preventDefault();
+
+			// Get form data
+			const formData = new FormData(this);
+			const data = Object.fromEntries(formData);
+
+			// Log to console (in real application, you would send to server)
+			console.log('Consultation Form Data:', data);
+
+			// Show success message
+			const successMsg = document.getElementById('successMessage');
+			successMsg.classList.add('show');
+
+			// Reset form
+			this.reset();
+
+			// Hide success message after 5 seconds
+			setTimeout(() => {
+				successMsg.classList.remove('show');
+			}, 5000);
+
+			// Scroll to top
+			window.scrollTo({ top: 0, behavior: 'smooth' });
+		});
+	</script>
+</body>
+</html>
