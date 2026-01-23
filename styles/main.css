@@ -17,9 +17,15 @@
     }
     
     .navbar {
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-      padding: 0.5rem 0;
+      background: linear-gradient(135deg, #4a7c59 0%, #2d5a3d 100%) !important;
+      background-color: #4a7c59 !important;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1) !important;
+      padding: 0.5rem 0 !important;
+      border: none !important;
+    }
+    
+    .navbar.navbar-expand-lg {
+      background: linear-gradient(135deg, #4a7c59 0%, #2d5a3d 100%) !important;
     }
     
     .navbar-brand {
@@ -107,6 +113,7 @@
       height: 100%;
       display: flex;
       flex-direction: column;
+      min-height: 500px;
     }
     
     .destination-card:hover {
@@ -125,11 +132,12 @@
       flex-grow: 1;
       display: flex;
       flex-direction: column;
+      justify-content: space-between;
     }
     
     .destination-card .card-title {
       font-weight: bold;
-      color: #667eea;
+      color: #4a7c59;
       margin-bottom: 0.5rem;
       font-size: clamp(1rem, 3vw, 1.25rem);
     }
@@ -146,9 +154,14 @@
     .destination-card .text-success {
       font-size: clamp(0.85rem, 2vw, 1rem);
     }
+
+    /* Contact section cards - không áp dụng min-height */
+    #contact .destination-card {
+      min-height: auto;
+    }
     
     .btn-custom {
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      background: linear-gradient(135deg, #4a7c59 0%, #2d5a3d 100%);
       border: none;
       color: white !important;
       padding: 0.6rem 1.5rem;
@@ -165,8 +178,8 @@
     .btn-custom:hover {
       transform: translateY(-3px) scale(1.05);
       color: white !important;
-      box-shadow: 0 6px 20px rgba(102, 126, 234, 0.5);
-      background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+      box-shadow: 0 6px 20px rgba(74, 124, 89, 0.5);
+      background: linear-gradient(135deg, #2d5a3d 0%, #4a7c59 100%);
     }
     
     .btn-custom:active {
@@ -213,7 +226,7 @@
       transform: translateX(-50%);
       width: 80px;
       height: 3px;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      background: linear-gradient(135deg, #4a7c59 0%, #2d5a3d 100%);
       border-radius: 2px;
     }
 
@@ -237,7 +250,7 @@
     }
     
     footer {
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      background: linear-gradient(135deg, #4a7c59 0%, #2d5a3d 100%);
       color: white;
       padding: clamp(1.5rem, 5vw, 3rem) 1rem clamp(0.5rem, 2vw, 1rem);
       margin-top: clamp(2rem, 5vw, 5rem);
@@ -339,8 +352,10 @@
         padding: 0.5rem 0.25rem !important;
       }
 
+    @media (max-width: 768px) {
       .hero-section {
         padding: 60px 1rem;
+        background-attachment: scroll !important;
       }
 
       .hero-section h1 {
@@ -450,5 +465,58 @@
 
       .destination-card:active {
         transform: scale(0.98);
+      }
+    }
+
+    /* Back to Top Button */
+    .back-to-top {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      width: 50px;
+      height: 50px;
+      background: linear-gradient(135deg, #4a7c59 0%, #2d5a3d 100%);
+      color: white;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 1.2rem;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      transition: all 0.3s ease;
+      z-index: 999;
+    }
+
+    .back-to-top:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 16px rgba(0,0,0,0.4);
+      background: linear-gradient(135deg, #2d5a3d 0%, #1a3a25 100%);
+    }
+
+    .back-to-top.show {
+      display: flex;
+      animation: slideUp 0.3s ease;
+    }
+
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .back-to-top {
+        width: 45px;
+        height: 45px;
+        bottom: 1.5rem;
+        right: 1.5rem;
+        font-size: 1rem;
       }
     }

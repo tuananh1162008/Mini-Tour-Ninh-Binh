@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài Viết Facebook - Mini Tour Ninh Bình</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../styles/main.css">
+    <link rel="stylesheet" href="../styles/facebook-posts.css">
+</head>
+<body>
+    <nav id="mainNavbar" class="navbar navbar-expand-lg sticky-top" style="display: none;">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="../index.html">✈️ Mini Tour Ninh Bình</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="../index.html">Trang chủ</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="../index.html#destinations">Điểm đến</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="facebook-posts.html">Bài đăng Facebook</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="../index.html#about">Về chúng tôi</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="../index.html#contact">Liên hệ</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Password Protection Modal -->
+    <div id="passwordModal" class="modal d-flex align-items-center justify-content-center" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.7); z-index: 9999; display: flex;">
+        <div class="modal-dialog" style="width: 90%; max-width: 400px;">
+            <div class="modal-content">
+                <div class="modal-header" style="background-color: #4a7c59; color: white;">
+                    <h5 class="modal-title">🔐 Xác Thực Truy Cập</h5>
+                    <button type="button" class="btn-close btn-close-white" onclick="closeModal()" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p class="text-center mb-4">Vui lòng nhập mật khẩu để xem bài đăng Facebook</p>
+                    <div class="mb-3">
+                        <label for="passwordInput" class="form-label">Mật Khẩu:</label>
+                        <input type="password" class="form-control form-control-lg" id="passwordInput" placeholder="Nhập mật khẩu" autofocus>
+                    </div>
+                    <div id="passwordError" class="alert alert-danger" style="display: none; margin-bottom: 1rem;">
+                        ❌ Mật khẩu không đúng. Vui lòng thử lại.
+                    </div>
+                </div>
+                <div class="modal-footer" style="gap: 0.5rem;">
+                    <button type="button" class="btn btn-secondary" onclick="closeModal()">❌ Hủy</button>
+                    <button type="button" class="btn btn-primary" onclick="checkPassword()">Truy Cập</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main id="mainContent" style="display: none;">
+        <section class="py-5">
+            <div class="container">
+                <h1 class="section-title">📰 Bài Viết Từ Facebook</h1>
+                <p class="text-center text-muted mb-5">Cập nhật những tin tức và hình ảnh mới nhất từ Mini Tour Ninh Bình</p>
+
+                <div class="info-message">
+                    <strong>ℹ️ Lưu ý:</strong> Bạn cần cấu hình Facebook API Access Token để hiển thị bài viết. Xem hướng dẫn bên dưới.
+                </div>
+
+                <div id="settingsCard" class="card mb-4">
+                    <div class="card-header bg-primary text-white">
+                        <h5 class="mb-0">⚙️ Cài Đặt API</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="mb-3">
+                            <label for="accessTokenInput" class="form-label">Access Token Facebook:</label>
+                            <input type="password" class="form-control" id="accessTokenInput" placeholder="Nhập Access Token của bạn">
+                            <small class="form-text text-muted">
+                                <a href="https://developers.facebook.com/docs/facebook-login/access-tokens" target="_blank">
+                                    Cách lấy Access Token
+                                </a>
+                            </small>
+                        </div>
+                        <div class="mb-3">
+                            <label for="pageIdInput" class="form-label">ID Trang Facebook:</label>
+                            <input type="text" class="form-control" id="pageIdInput" placeholder="Nhập ID trang Facebook (VD: 61584716466560)">
+                            <small class="form-text text-muted">
+                                Tìm ID trang tại <a href="https://findmyfbid.com/" target="_blank">findmyfbid.com</a>
+                            </small>
+                        </div>
+                        <button class="btn btn-primary" onclick="saveFacebookConfig()">💾 Lưu Cài Đặt</button>
+                        <button class="btn btn-secondary" onclick="loadFacebookPosts()">🔄 Tải Bài Viết</button>
+                        <button class="btn btn-outline-danger" onclick="clearFacebookConfig()">🗑️ Xóa Cài Đặt</button>
+                    </div>
+                </div>
+
+                <div id="postsContainer" class="facebook-posts-container">
+                    <div class="info-message">
+                        Vui lòng nhập cài đặt API ở trên để xem bài viết từ Facebook.
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+  <!-- Footer --><!-- Footer -->
+	<footer>
+    <div class="container">
+      <div class="row">
+        <!-- Branding Section -->
+        <div class="col-md-3 footer-section">
+          <h5>✈️ Mini Tour Ninh Bình</h5>
+          <p>Khám phá vẻ đẹp tự nhiên và văn hóa phong phú của Ninh Bình - Vịnh Hạ Long trên cạn.</p>
+        </div>
+        
+        <!-- Contact Section -->
+        <div class="col-md-3 footer-section">
+          <h5>📞 Liên Hệ</h5>
+          <ul style="list-style: none; padding: 0;">
+            <li><strong>Hotline:</strong> <a href="tel:0343638950" class="text-white text-decoration-none">034 3638 950</a></li>
+            <li style="margin-top: 0.5rem;"><strong>Website:</strong><br><a href="http://minitourninhbinh.id.vn" class="text-white text-decoration-none" target="_blank">minitourninhbinh.id.vn</a></li>
+            <li style="margin-top: 0.5rem;"><strong>Facebook:</strong><br><a href="https://www.facebook.com/people/MINI-TOUR-NINH-B%25C3%258CNH/61584716466560/" class="text-white text-decoration-none" target="_blank">Mini tour Ninh Binh</a></li>
+          </ul>
+        </div>
+        
+        <!-- Social Media Section -->
+        <div class="col-md-2 footer-section">
+          <h5>📱 Theo Dõi Chúng Tôi</h5>
+          <ul style="list-style: none; padding: 0;">
+            <li><a href="https://www.facebook.com/people/MINI-TOUR-NINH-B%25C3%258CNH/61584716466560/" target="_blank"><i class="fab fa-facebook"></i> Facebook</a></li>
+            <li><a href="#" target="_blank"><i class="fab fa-instagram"></i> Instagram</a></li>
+            <li><a href="#" target="_blank"><i class="fab fa-youtube"></i> YouTube</a></li>
+            <li><a href="#" target="_blank"><i class="fab fa-tiktok"></i> TikTok</a></li>
+            <li><a href="facebook-posts.html"><i class="fas fa-images"></i> Bài đăng</a></li>
+          </ul>
+        </div>
+        
+        <!-- Promo Section -->
+        <div class="col-md-4 footer-section text-center">
+          <h5>🎉 Ưu Đãi Đặc Biệt</h5>
+          <p class="text-success"><strong style="font-size: 1.3rem;">💰 Từ 199.000đ/khách</strong></p>
+          <p><small>Tour chất lượng cao, giá cạnh tranh</small></p>
+          <p style="margin-top: 1rem;"><strong>#minitourninhbinh</strong></p>
+          <p><small>Theo dõi hashtag để cập nhật tour mới</small></p>
+        </div>
+      </div>
+      
+      <hr style="border-color: rgba(255,255,255,0.3); margin: 2rem 0;">
+      
+      <div class="row">
+        <div class="col-12 text-center">
+          <p style="margin: 0;">&copy; 2025 Mini Tour Ninh Bình</p>
+          <p style="margin: 0.5rem 0; font-size: 0.9rem;">Trải nghiệm du lịch không thể quên! 🌿 Khám phá Ninh Bình cùng chúng tôi</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Back to Top Button -->
+  <button id="backToTop" class="back-to-top" title="Lên đầu trang">↑</button>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+  <script>
+    // Password Protection
+    const CORRECT_PASSWORD = 'tuananh1162008';
+    const passwordModal = document.getElementById('passwordModal');
+    const mainContent = document.getElementById('mainContent');
+    const mainNavbar = document.getElementById('mainNavbar');
+    const passwordInput = document.getElementById('passwordInput');
+    const passwordError = document.getElementById('passwordError');
+
+    // Check if user is already authenticated
+    function checkAuthentication() {
+      const isAuthenticated = sessionStorage.getItem('fbPostsAuthenticated');
+      if (isAuthenticated === 'true') {
+        showMainContent();
+      } else {
+        showPasswordModal();
+      }
+    }
+
+    // Show password modal
+    function showPasswordModal() {
+      passwordModal.style.display = 'flex';
+      mainContent.style.display = 'none';
+      mainNavbar.style.display = 'none';
+      passwordInput.focus();
+    }
+
+    // Show main content
+    function showMainContent() {
+      passwordModal.style.setProperty('display', 'none', 'important');
+      mainContent.style.display = 'block';
+      mainNavbar.style.display = 'block';
+    }
+
+    // Check password
+    function checkPassword() {
+      const enteredPassword = passwordInput.value;
+      
+      if (enteredPassword === CORRECT_PASSWORD) {
+        sessionStorage.setItem('fbPostsAuthenticated', 'true');
+        passwordError.style.display = 'none';
+        passwordInput.value = '';
+        showMainContent();
+      } else {
+        passwordError.style.display = 'block';
+        passwordInput.value = '';
+        passwordInput.focus();
+      }
+    }
+
+    // Close modal and redirect to home
+    function closeModal() {
+      passwordModal.style.display = 'none';
+      mainContent.style.display = 'none';
+      mainNavbar.style.display = 'none';
+      passwordInput.value = '';
+      passwordError.style.display = 'none';
+      // Redirect to home page
+      window.location.href = '../index.html';
+    }
+
+    // Allow Enter key to submit password
+    passwordInput.addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') {
+        checkPassword();
+      }
+    });
+
+    // Initialize on page load
+    window.addEventListener('DOMContentLoaded', function() {
+      checkAuthentication();
+    });
+
+    // Post Card Click Handler
+    document.addEventListener('click', function(e) {
+      const postCard = e.target.closest('.facebook-post-card');
+      if (postCard) {
+        // Remove active class from all other cards
+        document.querySelectorAll('.facebook-post-card.active').forEach(card => {
+          if (card !== postCard) {
+            card.classList.remove('active');
+          }
+        });
+        // Toggle active class on clicked card
+        postCard.classList.toggle('active');
+      }
+    });
+
+    // Show/Hide back to top button
+    const backToTopBtn = document.getElementById('backToTop');
+    
+    window.addEventListener('scroll', () => {
+      if (window.pageYOffset > 300) {
+        backToTopBtn.classList.add('show');
+      } else {
+        backToTopBtn.classList.remove('show');
+      }
+    });
+    
+    // Scroll to top smoothly
+    backToTopBtn.addEventListener('click', () => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+  </script>
+</body>
+</html>

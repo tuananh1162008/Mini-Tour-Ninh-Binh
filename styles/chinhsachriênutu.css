@@ -1,0 +1,103 @@
+/* Policy Banner Styles */
+.policy-banner {
+	background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+	color: white;
+	padding: 80px 0;
+	text-align: center;
+	margin-bottom: 50px;
+}
+
+.policy-banner h1 {
+	font-size: 3rem;
+	font-weight: bold;
+	margin-bottom: 1rem;
+	text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+}
+
+.policy-container {
+	max-width: 900px;
+	margin: 0 auto;
+	padding: 0 20px;
+}
+
+.policy-content {
+	background: white;
+	padding: 3rem;
+	border-radius: 15px;
+	box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+	line-height: 1.8;
+}
+
+.policy-section {
+	margin-bottom: 3rem;
+}
+
+.policy-section h2 {
+	color: #667eea;
+	font-weight: bold;
+	font-size: 1.5rem;
+	margin-bottom: 1.5rem;
+	border-bottom: 3px solid #667eea;
+	padding-bottom: 0.5rem;
+}
+
+.policy-section h3 {
+	color: #764ba2;
+	font-weight: 600;
+	font-size: 1.2rem;
+	margin-top: 1.5rem;
+	margin-bottom: 1rem;
+}
+
+.policy-section p {
+	color: #555;
+	margin-bottom: 1rem;
+	text-align: justify;
+}
+
+.policy-section ul {
+	color: #555;
+	margin-left: 1.5rem;
+}
+
+.policy-section ul li {
+	margin-bottom: 0.8rem;
+}
+
+.update-date {
+	background: #f0f0f0;
+	padding: 1.5rem;
+	border-radius: 10px;
+	margin-bottom: 2rem;
+	text-align: center;
+	color: #666;
+}
+
+.back-link {
+	margin-top: 3rem;
+	text-align: center;
+}
+
+.back-link a {
+	color: #667eea;
+	font-weight: 600;
+	text-decoration: none;
+	transition: color 0.3s ease;
+}
+
+.back-link a:hover {
+	color: #764ba2;
+	text-decoration: underline;
+}
+
+/* Contact Box Styles */
+div p strong {
+	color: #333;
+}
+
+/* Footer Paragraph */
+.back-link p {
+	color: #999;
+	font-size: 0.9rem;
+	margin-top: 2rem;
+}

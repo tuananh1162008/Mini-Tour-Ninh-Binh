@@ -1,5 +1,5 @@
 // ============================================
-// FORM VALIDATION & SUBMISSION
+// INITIALIZE ALL FEATURES ON DOM READY
 // ============================================
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -39,7 +39,6 @@ document.addEventListener('DOMContentLoaded', function() {
       // sendFormData(name, email, phone, message);
     });
   }
-});
 
 // Email validation
 function validateEmail(email) {
