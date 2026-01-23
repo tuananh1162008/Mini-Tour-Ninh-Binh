@@ -5,206 +5,10 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Tư Vấn Combo Du Lịch Ninh Bình</title>
 	<link rel="stylesheet" href="../styles/main.css">
+	<link rel="stylesheet" href="../styles/tuvan.css">
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 	<link rel="shortcut icon" href="../img/logo.jpg" type="image/x-icon">
 
-	<style>
-		.consultation-banner {
-			background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-			color: white;
-			padding: 80px 0;
-			text-align: center;
-			margin-bottom: 50px;
-		}
-
-		.consultation-banner h1 {
-			font-size: 3rem;
-			font-weight: bold;
-			margin-bottom: 1rem;
-			text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
-		}
-
-		.consultation-banner p {
-			font-size: 1.2rem;
-			text-shadow: 1px 1px 4px rgba(0,0,0,0.3);
-		}
-
-		.consultation-container {
-			max-width: 900px;
-			margin: 0 auto;
-		}
-
-		.consultation-form {
-			background: white;
-			padding: 3rem;
-			border-radius: 15px;
-			box-shadow: 0 8px 25px rgba(0,0,0,0.1);
-			margin-bottom: 4rem;
-		}
-
-		.form-label {
-			font-weight: 600;
-			color: #333;
-			margin-bottom: 0.8rem;
-		}
-
-		.form-control, .form-select {
-			border: 2px solid #e0e0e0;
-			border-radius: 8px;
-			padding: 0.8rem;
-			transition: 0.3s;
-			font-size: 1rem;
-		}
-
-		.form-control:focus, .form-select:focus {
-			border-color: #667eea;
-			box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.25);
-		}
-
-		.form-group {
-			margin-bottom: 1.5rem;
-		}
-
-		.form-group.group-row {
-			display: grid;
-			grid-template-columns: 1fr 1fr;
-			gap: 1.5rem;
-		}
-
-		@media (max-width: 768px) {
-			.form-group.group-row {
-				grid-template-columns: 1fr;
-			}
-		}
-
-		.btn-submit {
-			background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-			border: none;
-			color: white;
-			padding: 1rem 3rem;
-			border-radius: 25px;
-			font-weight: 600;
-			font-size: 1.1rem;
-			cursor: pointer;
-			transition: all 0.3s;
-			width: 100%;
-		}
-
-		.btn-submit:hover {
-			transform: translateY(-2px);
-			box-shadow: 0 6px 20px rgba(102, 126, 234, 0.5);
-		}
-
-		.btn-submit:active {
-			transform: translateY(0);
-		}
-
-		.contact-info {
-			background: #f8f9fa;
-			padding: 2rem;
-			border-radius: 15px;
-			margin-top: 3rem;
-		}
-
-		.contact-info h3 {
-			color: #667eea;
-			margin-bottom: 1.5rem;
-			font-weight: bold;
-		}
-
-		.contact-item {
-			display: flex;
-			align-items: center;
-			margin-bottom: 1.5rem;
-			padding: 1rem;
-			background: white;
-			border-radius: 10px;
-			box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-		}
-
-		.contact-item-icon {
-			font-size: 1.8rem;
-			margin-right: 1rem;
-			min-width: 40px;
-			text-align: center;
-		}
-
-		.contact-item-content h5 {
-			margin: 0;
-			color: #333;
-			font-weight: 600;
-		}
-
-		.contact-item-content p {
-			margin: 0.3rem 0 0;
-			color: #666;
-		}
-
-		.tour-options {
-			background: white;
-			padding: 2rem;
-			border-radius: 15px;
-			margin-bottom: 2rem;
-			box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-		}
-
-		.tour-options h3 {
-			color: #667eea;
-			margin-bottom: 1.5rem;
-			font-weight: bold;
-		}
-
-		.checkbox-group {
-			display: grid;
-			grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-			gap: 1rem;
-		}
-
-		.checkbox-item {
-			display: flex;
-			align-items: center;
-		}
-
-		.checkbox-item input[type="checkbox"] {
-			width: 20px;
-			height: 20px;
-			margin-right: 0.8rem;
-			cursor: pointer;
-			accent-color: #667eea;
-		}
-
-		.checkbox-item label {
-			margin: 0;
-			cursor: pointer;
-			flex: 1;
-		}
-
-		.success-message {
-			display: none;
-			background: #d4edda;
-			color: #155724;
-			padding: 1.5rem;
-			border-radius: 10px;
-			border-left: 4px solid #28a745;
-			margin-bottom: 2rem;
-		}
-
-		.success-message.show {
-			display: block;
-			animation: slideIn 0.3s ease;
-		}
-
-		@keyframes slideIn {
-			from {
-				opacity: 0;
-				transform: translateY(-20px);
-			}
-			to {
-				opacity: 1;
-				transform: translateY(0);
-			}
-		}
-	</style>
 </head>
 <body>
 	<!-- Navbar -->
@@ -265,7 +69,7 @@
 
 			<!-- Consultation Form -->
 			<form class="consultation-form" id="consultationForm">
-				<h2 style="color: #667eea; margin-bottom: 2rem; text-align: center;">📝 Biểu Mẫu Tư Vấn</h2>
+				<h2>📝 Biểu Mẫu Tư Vấn</h2>
 
 				<!-- Personal Info -->
 				<div class="form-group group-row">
@@ -334,9 +138,7 @@
 
 				<!-- Submit Button -->
 				<button type="submit" class="btn-submit">📤 Gửi Tư Vấn</button>
-				<p style="text-align: center; margin-top: 1rem; color: #666; font-size: 0.9rem;">
-					* Là trường bắt buộc
-				</p>
+				<p>
 			</form>
 
 			<!-- Contact Info -->
@@ -346,7 +148,7 @@
 					<div class="contact-item-icon">💬</div>
 					<div class="contact-item-content">
 						<h5>Facebook Messenger</h5>
-						<p><a href="https://www.facebook.com/people/MINI-TOUR-NINH-B%C3%8CNH/61584716466560/" target="_blank" style="color: #667eea; text-decoration: none;">Mini Tour Ninh Bình</a></p>
+							<p><a href="https://www.facebook.com/people/MINI-TOUR-NINH-B%C3%8CNH/61584716466560/" target="_blank">Mini Tour Ninh Bình</a></p>
 					</div>
 				</div>
 
@@ -354,7 +156,7 @@
 					<div class="contact-item-icon">📱</div>
 					<div class="contact-item-content">
 						<h5>Hotline / Zalo</h5>
-						<p><a href="tel:0343638950" style="color: #667eea; text-decoration: none;">0343 638 950</a></p>
+							<p><a href="tel:0343638950">0343 638 950</a></p>
 					</div>
 				</div>
 
@@ -362,7 +164,7 @@
 					<div class="contact-item-icon">📧</div>
 					<div class="contact-item-content">
 						<h5>Email</h5>
-						<p><a href="mailto:Nguyenhavy548548@gmail.com" style="color: #667eea; text-decoration: none;">Nguyenhavy548548@gmail.com</a></p>
+							<p><a href="mailto:Nguyenhavy548548@gmail.com">Nguyenhavy548548@gmail.com</a></p>
 					</div>
 				</div>
 
@@ -378,7 +180,7 @@
 	</main>
 
 	<!-- Footer -->
-	<footer style="margin-top: 5rem;">
+	<footer>
 		<div class="container">
 			<div class="row">
 				<div class="col-md-3 footer-section">
@@ -404,7 +206,7 @@
 					</ul>
 				</div>
 			</div>
-			<hr style="border-color: rgba(255,255,255,0.2);">
+			<hr>
 			<div class="text-center">
 				<p>&copy; 2025 Du Lịch Việt Nam.</p>
 			</div>
